@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MailDraftHelper": {
+      "commandName": "Project",
+      "commandLineArgs": "\r\n"
+    }
+  }
+}
