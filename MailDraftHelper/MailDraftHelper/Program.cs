@@ -10,7 +10,7 @@ namespace MailDraftHelper
 {
     public class Program
     {
-        [STAThread] // חובה בשביל Outlook COM
+        [STAThread]
         public static async Task Main(string[] args)
         {
             Console.WriteLine("Helper started");
@@ -28,7 +28,6 @@ namespace MailDraftHelper
                 var fullUrl = args[0];
                 Console.WriteLine("Full URL: " + fullUrl);
 
-                // jobmail://create?token=xxxx  →  https://create?token=xxxx (רק בשביל ה-Uri)
                 var httpUrl = fullUrl.Replace("jobmail", "https");
                 var uri = new Uri(httpUrl);
 

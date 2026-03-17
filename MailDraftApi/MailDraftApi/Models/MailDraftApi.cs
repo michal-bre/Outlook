@@ -2,7 +2,7 @@
 {
     public class EmailDraft
     {
-        public int Id { get; set; }           // אם תעבדי עם DB
+        public int Id { get; set; }         
         public string Token { get; set; } = string.Empty;
         public string To { get; set; } = string.Empty;
         public string Subject { get; set; } = string.Empty;

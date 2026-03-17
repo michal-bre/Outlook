@@ -30,7 +30,7 @@ namespace MailDraftApi.Controllers
                 return BadRequest("יש לצרף קובץ קורות חיים");
             }
 
-            // 1. שמירת הקובץ
+
             var ext = Path.GetExtension(cv.FileName);
             var fileName = $"{Guid.NewGuid()}{ext}";
             var cvFolder = _uploadSettings.CvFolder;
@@ -43,7 +43,7 @@ namespace MailDraftApi.Controllers
                 await cv.CopyToAsync(stream);
             }
 
-            // 2. יצירת token
+           
             var token = Guid.NewGuid().ToString("N");
             var cvUrl = $"/uploads/Cv/{fileName}";
 

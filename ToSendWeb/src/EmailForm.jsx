@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EmailForm.css";
 
-const API_BASE = "https://localhost:7232";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://localhost:7232";
 
 function EmailForm() {
   const [to, setTo] = useState("");

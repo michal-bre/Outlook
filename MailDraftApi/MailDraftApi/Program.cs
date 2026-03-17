@@ -6,17 +6,12 @@ using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ------------------------
-// 1) הגדרת תיקיית Uploads
-// ------------------------
+
 var uploadsFolder = Path.Combine(builder.Environment.ContentRootPath, "Uploads", "Cv");
 Directory.CreateDirectory(uploadsFolder);
 
 builder.Services.AddSingleton(new UploadSettings { CvFolder = uploadsFolder });
 
-// ------------------------
-// 2) הגדרת CORS
-// ------------------------
 var allowFrontend = "_allowFrontend";
 
 builder.Services.AddCors(options =>
@@ -24,20 +19,17 @@ builder.Services.AddCors(options =>
     options.AddPolicy(allowFrontend, policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")   // ה-React שלך
+            .WithOrigins("http://localhost:5173")  
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
 
-// ------------------------
-// 3) שירותי MVC
-// ------------------------
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    // ? זה אומר ל-Swagger ש-IFormFile הוא קובץ (binary)
     c.MapType<IFormFile>(() => new OpenApiSchema
     {
         Type = "string",
@@ -46,9 +38,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-// ------------------------
-// 4) בניית ה-App
-// ------------------------
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -57,14 +47,10 @@ if (app.Environment.IsDevelopment())
 }
 
 
-// ------------------------
-// 5) שימוש ב-CORS
-// ------------------------
+
 app.UseCors(allowFrontend);
 
-// ------------------------
-// 6) Static Files (uploads)
-// ------------------------
+
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -72,13 +58,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/uploads"
 });
 
-// ------------------------
-// 7) Routing + Controllers
-// ------------------------
+
 app.UseRouting();
 app.MapControllers();
 
-// ------------------------
-// 8) הפעלת השרת
-// ------------------------
 app.Run();
