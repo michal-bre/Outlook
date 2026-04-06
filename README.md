@@ -96,7 +96,3 @@ REG ADD HKCU\Software\Classes\jobmail\shell\open\command /ve /d "\"C:\\path\\to\
 - ודאו שה-API רץ ב-HTTPS כפי שמצופה בקוד של ה-Helper (`https://localhost:7232`). אם תשנו פורט/פרוטוקול — עדכנו גם את `ToSendWeb/src/EmailForm.jsx` (המשתנה `API_BASE`) ואת ה-Helper במידת הצורך.
 - אם ה-Helper לא מצליח לפתוח Outlook — ודאו ש-Outlook מותקן ושהיישום מופעל בהרשאות המתאימות.
 - הקבצים הנשמרים נמצאים בתיקייה `MailDraftApi/MailDraftApi/Uploads/Cv` בזמן הריצה.
-
-אם תרצה, אני יכול:
-- להוסיף הוראות פשוטות ל-register פרוטוקול בתסריט PowerShell מותאם.
-- לשנות את `API_BASE` ל-Config בקובץ `ToSendWeb` כדי להפוך אותו לקל יותר לשנות.
